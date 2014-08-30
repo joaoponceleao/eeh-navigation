@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+<nav class="navbar navbar-default navbar-static-top eeh-navigation" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" ng-click="isNavbarCollapsed = !isNavbarCollapsed">
             <span class="sr-only">Toggle navigation</span>
@@ -17,12 +17,16 @@
                 <span class="fa fa-caret-down"></span>
             </a>
             <ul class="dropdown-menu">
-                <li ng-repeat="item in dropdown.children" ng-class="{'divider': item.isDivider}">
+                <li ng-repeat="item in dropdown.children" ng-class="{'divider': item.isDivider}"
+                    ng-if="isVisible(item)">
                     <a ng-if="!item.isDivider && item.state"
                        ui-sref="{{ item.state }}">
                         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
                     </a>
                     <a ng-if="item.click" ng-click="item.click()">
+                        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+                    </a>
+                    <a ng-if="item.href" ng-href="{{item.href}}">
                         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
                     </a>
                 </li>
@@ -44,19 +48,31 @@
                         </span>
                         </div>
                     </li>
-                    <li ng-repeat="item in items" ng-include="'template/eeh-navigation/sidebar-menu-item.html'"></li>
+                    <li ng-repeat="item in items"
+                        ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
+                        ng-if="isVisible(item)"></li>
                 </ul>
             </div>
         </div>
     </div>
 </nav>
-<div id="eeh-navigation-page-wrapper" ng-transclude></div>
+
+<div id="eeh-navigation-page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <div ng-transclude></div>
+        </div>
+    </div>
+</div>
 
 <script type="text/ng-template" id="template/eeh-navigation/sidebar-menu-item.html">
     <a ng-if="item.state" ui-sref="{{item.state}}" ui-sref-active="active">
         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
     </a>
     <a ng-if="item.click" ng-click="item.click()">
+        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+    </a>
+    <a ng-if="item.href" ng-href="{{item.href}}">
         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
     </a>
     <a ng-if="!item.state && item.children"
@@ -66,7 +82,9 @@
               ng-class="item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'"></span>
     </a>
     <ul ng-if="!item.state && item.children" collapse="item.isCollapsed" class="nav">
-        <li ng-repeat="item in item.children" ng-include="'template/eeh-navigation/sidebar-menu-item.html'"></li>
+        <li ng-repeat="item in item.children"
+            ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
+            ng-if="isVisible(item)"></li>
     </ul>
 </script>
 

@@ -39,12 +39,24 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
                     state: 'demo.home'
                 },
                 {
-                    text: 'Settings',
-                    iconClass: 'fa-gear',
-                    state: 'demo.home'
+                    text: 'example.com',
+                    iconClass: 'fa-external-link',
+                    href: 'http://example.com'
                 },
                 {
                     isDivider: true
+                },
+                {
+                    text: 'Visible',
+                    iconClass: 'fa-eye',
+                    href: 'http://example.com',
+                    isVisible: true
+                },
+                {
+                    text: 'Hidden',
+                    iconClass: 'fa-eye-slash',
+                    href: 'http://example.com',
+                    isVisible: false
                 },
                 {
                     text: 'Logout',
@@ -69,6 +81,23 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
             click: function () {
                 alert('Tada!');
             }
+        },
+        {
+            text: 'Link to example.com',
+            iconClass: 'fa-external-link',
+            href: 'http://example.com'
+        },
+        {
+            text: 'Visible',
+            iconClass: 'fa-eye',
+            href: 'http://example.com',
+            isVisible: true
+        },
+        {
+            text: 'Hidden',
+            iconClass: 'fa-eye-slash',
+            href: 'http://example.com',
+            isVisible: false
         },
         {
             text: 'Alphabet',
