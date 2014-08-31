@@ -1,11 +1,19 @@
+'use strict';
+
 angular.module('eehNavigation', [])
 .provider('eehNavigation', function () {
     var self = this;
+    self.sidebarSearch = {
+        isVisible: true,
+        model: '',
+        click: function () {}
+    };
     self.sidebarItems = [];
     self.navbarBrand = {};
     self.navbarDropdowns = [];
     self.$get = function () {
         return {
+            sidebarSearch: self.sidebarSearch,
             navbarBrand: self.navbarBrand,
             navbarDropdowns: self.navbarDropdowns,
             sidebarItems: self.sidebarItems
@@ -21,6 +29,7 @@ angular.module('eehNavigation', [])
             scope.navbarBrand = eehNavigation.navbarBrand;
             scope.navbarDropdowns = eehNavigation.navbarDropdowns;
             scope.items = eehNavigation.sidebarItems;
+            scope.sidebarSearch = eehNavigation.sidebarSearch;
             scope.isNavbarCollapsed = false;
 
             var windowElement = angular.element($window);
@@ -38,6 +47,7 @@ angular.module('eehNavigation', [])
             };
 
             var topOffset = 50;
+            var transcludedWrapper = element.find('#eeh-navigation-page-wrapper');
             scope.$watch(getWindowDimensions, function (newValue) {
                 if (angular.isUndefined(newValue)) {
                     return;
@@ -51,9 +61,11 @@ angular.module('eehNavigation', [])
                 }
                 var height = (newValue.innerHeight > 0) ? newValue.innerHeight : $window.screen.height;
                 height = height - topOffset;
-                if (height < 1) height = 1;
+                if (height < 1) {
+                    height = 1;
+                }
                 if (height > topOffset) {
-                    element.find("#eeh-navigation-page-wrapper").css("min-height", (height) + "px");
+                    transcludedWrapper.css('min-height', (height) + 'px');
                 }
             }, true);
 
@@ -66,6 +78,14 @@ angular.module('eehNavigation', [])
                 }
                 return true;
             };
+
+            scope.isSidebarTextCollapsed = false;
+            scope.toggleSidebarTextCollapse = function() {
+                scope.isSidebarTextCollapsed = !scope.isSidebarTextCollapsed;
+                transcludedWrapper.toggleClass('sidebar-text-collapsed');
+                element.find('.sidebar').toggleClass('sidebar-text-collapsed');
+                element.find('.sidebar .menu-item-text').toggleClass('hidden');
+            };
         }
-    }
+    };
 }]);
