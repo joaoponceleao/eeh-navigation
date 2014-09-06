@@ -3,17 +3,23 @@
     "use strict";
     angular.module("eehNavigation", []);
     "use strict";
-    angular.module("eehNavigation").directive("eehNavigation", [ "$window", "eehNavigation", function($window, eehNavigation) {
+    var NavigationDirective = function($window, eehNavigation) {
         return {
             restrict: "AE",
             transclude: true,
             templateUrl: "template/eeh-navigation/eeh-navigation.html",
             link: function(scope, element) {
                 scope.navbarBrand = eehNavigation.navbarBrand;
-                scope.navbarMenuItems = eehNavigation.navbarMenuItems();
-                scope.items = eehNavigation.sidebarMenuItems();
                 scope.sidebarSearch = eehNavigation.sidebarSearch;
                 scope.isNavbarCollapsed = false;
+                scope._navbarMenuItems = eehNavigation._navbarMenuItems;
+                scope.$watch("_navbarMenuItems", function() {
+                    scope.navbarMenuItems = eehNavigation.navbarMenuItems();
+                });
+                scope._sidebarMenuItems = eehNavigation._sidebarMenuItems;
+                scope.$watch("_sidebarMenuItems", function() {
+                    scope.sidebarMenuItems = eehNavigation.sidebarMenuItems();
+                });
                 var windowElement = angular.element($window);
                 windowElement.bind("resize", function() {
                     scope.$apply();
@@ -48,15 +54,6 @@
                         transcludedWrapper.css("min-height", height + "px");
                     }
                 }, true);
-                scope.isVisible = function(item) {
-                    if (angular.isFunction(item.isVisible)) {
-                        return item.isVisible();
-                    }
-                    if (angular.isDefined(item.isVisible)) {
-                        return item.isVisible;
-                    }
-                    return true;
-                };
                 scope.isSidebarTextCollapsed = false;
                 scope.toggleSidebarTextCollapse = function() {
                     scope.isSidebarTextCollapsed = !scope.isSidebarTextCollapsed;
@@ -64,28 +61,45 @@
                     element.find(".sidebar").toggleClass("sidebar-text-collapsed");
                     element.find(".sidebar .menu-item-text").toggleClass("hidden");
                 };
-                scope.hasChildren = function(item) {
-                    for (var key in item) {
-                        if (item.hasOwnProperty(key) && angular.isObject(item[key])) {
-                            return true;
-                        }
-                    }
-                    return false;
-                };
-                scope.children = function(item) {
-                    var children = [];
-                    angular.forEach(item, function(property) {
-                        if (angular.isObject(property)) {
-                            children.push(property);
-                        }
-                    });
-                    return children;
-                };
             }
         };
-    } ]);
+    };
+    angular.module("eehNavigation").directive("eehNavigation", [ "$window", "eehNavigation", NavigationDirective ]);
     "use strict";
-    var Navigation = function() {
+    var MenuItem = function(config) {
+        angular.extend(this, config);
+    };
+    MenuItem.prototype.children = function() {
+        var children = [];
+        angular.forEach(this, function(property) {
+            if (angular.isObject(property)) {
+                children.push(property);
+            }
+        });
+        return children;
+    };
+    MenuItem.prototype.hasChildren = function() {
+        for (var key in this) {
+            if (this.hasOwnProperty(key) && angular.isObject(this[key])) {
+                return true;
+            }
+        }
+        return false;
+    };
+    MenuItem.prototype._isVisible = function() {
+        if (angular.isFunction(this.isVisible)) {
+            return this.isVisible();
+        }
+        if (angular.isDefined(this.isVisible)) {
+            return this.isVisible;
+        }
+        return true;
+    };
+    MenuItem.prototype.isVisible = function() {
+        return true;
+    };
+    "use strict";
+    var NavigationService = function() {
         this.sidebarSearch = {
             isVisible: true,
             model: "",
@@ -104,7 +118,7 @@
             return arr;
         };
     };
-    Navigation.prototype.buildAncestorChain = function(name, items, config) {
+    NavigationService.prototype.buildAncestorChain = function(name, items, config) {
         var keys = name.split(".");
         if (name.length === 0 || keys.length === 0) {
             return;
@@ -118,11 +132,14 @@
         }
         this.buildAncestorChain(keys.join("."), items[key], config);
     };
-    Navigation.prototype.sidebarMenuItem = function(name, config) {
-        this._sidebarMenuItems[name] = config;
+    NavigationService.prototype.sidebarMenuItem = function(name, config) {
+        if (angular.isUndefined(config)) {
+            return this._sidebarMenuItems[name];
+        }
+        this._sidebarMenuItems[name] = new MenuItem(config);
         return this;
     };
-    Navigation.prototype.sidebarMenuItems = function() {
+    NavigationService.prototype.sidebarMenuItems = function() {
         var items = {};
         var self = this;
         angular.forEach(this._sidebarMenuItems, function(config, name) {
@@ -130,11 +147,14 @@
         });
         return this._toArray(items);
     };
-    Navigation.prototype.navbarMenuItem = function(name, config) {
-        this._navbarMenuItems[name] = config;
+    NavigationService.prototype.navbarMenuItem = function(name, config) {
+        if (angular.isUndefined(config)) {
+            return this._navbarMenuItems[name];
+        }
+        this._navbarMenuItems[name] = new MenuItem(config);
         return this;
     };
-    Navigation.prototype.navbarMenuItems = function() {
+    NavigationService.prototype.navbarMenuItems = function() {
         var items = {};
         var self = this;
         angular.forEach(this._navbarMenuItems, function(config, name) {
@@ -142,10 +162,10 @@
         });
         return this._toArray(items);
     };
-    Navigation.prototype.$get = function() {
+    NavigationService.prototype.$get = function() {
         return this;
     };
-    angular.module("eehNavigation").provider("eehNavigation", Navigation);
+    angular.module("eehNavigation").provider("eehNavigation", NavigationService);
 })({}, function() {
     return this;
 }());

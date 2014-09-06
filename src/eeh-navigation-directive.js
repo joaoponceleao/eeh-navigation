@@ -1,17 +1,22 @@
 'use strict';
 
-angular.module('eehNavigation')
-.directive('eehNavigation', ['$window', 'eehNavigation', function ($window, eehNavigation) {
+var NavigationDirective = function ($window, eehNavigation) {
     return {
         restrict: 'AE',
         transclude: true,
         templateUrl: 'template/eeh-navigation/eeh-navigation.html',
         link: function (scope, element) {
             scope.navbarBrand = eehNavigation.navbarBrand;
-            scope.navbarMenuItems = eehNavigation.navbarMenuItems();
-            scope.items = eehNavigation.sidebarMenuItems();
             scope.sidebarSearch = eehNavigation.sidebarSearch;
             scope.isNavbarCollapsed = false;
+            scope._navbarMenuItems = eehNavigation._navbarMenuItems;
+            scope.$watch('_navbarMenuItems', function () {
+                scope.navbarMenuItems = eehNavigation.navbarMenuItems();
+            });
+            scope._sidebarMenuItems = eehNavigation._sidebarMenuItems;
+            scope.$watch('_sidebarMenuItems', function () {
+                scope.sidebarMenuItems = eehNavigation.sidebarMenuItems();
+            });
 
             var windowElement = angular.element($window);
             windowElement.bind('resize', function () {
@@ -50,16 +55,6 @@ angular.module('eehNavigation')
                 }
             }, true);
 
-            scope.isVisible = function (item) {
-                if (angular.isFunction(item.isVisible)) {
-                    return item.isVisible();
-                }
-                if (angular.isDefined(item.isVisible)) {
-                    return item.isVisible;
-                }
-                return true;
-            };
-
             scope.isSidebarTextCollapsed = false;
             scope.toggleSidebarTextCollapse = function() {
                 scope.isSidebarTextCollapsed = !scope.isSidebarTextCollapsed;
@@ -67,25 +62,8 @@ angular.module('eehNavigation')
                 element.find('.sidebar').toggleClass('sidebar-text-collapsed');
                 element.find('.sidebar .menu-item-text').toggleClass('hidden');
             };
-
-            scope.hasChildren = function (item) {
-                for (var key in item) {
-                    if (item.hasOwnProperty(key) && angular.isObject(item[key])) {
-                        return true;
-                    }
-                }
-                return false;
-            };
-
-            scope.children = function (item) {
-                var children = [];
-                angular.forEach(item, function (property) {
-                    if (angular.isObject(property)) {
-                        children.push(property);
-                    }
-                });
-                return children;
-            };
         }
     };
-}]);
+};
+
+angular.module('eehNavigation').directive('eehNavigation', ['$window', 'eehNavigation', NavigationDirective]);
