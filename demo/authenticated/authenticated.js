@@ -1,7 +1,6 @@
 angular.module('demo')
-.controller('AuthenticatedCtrl', function ($window, eehNavigation) {
+.controller('AuthenticatedCtrl', function ($translate, $window, eehNavigation) {
     'use strict';
-
     eehNavigation.navbarMenuItem('user').text = 'Ethan';
 
     eehNavigation.navbarMenuItem('user.logout', {

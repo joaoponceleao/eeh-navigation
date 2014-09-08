@@ -1,9 +1,10 @@
 angular.module('demo', [
     'eehNavigation',
+    'pascalprecht.translate',
     'ui.bootstrap',
     'ui.router'
-]).config(['$stateProvider', '$urlRouterProvider', 'eehNavigationProvider',
-function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
+]).config(['$stateProvider', '$translateProvider', '$urlRouterProvider', 'eehNavigationProvider',
+function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
         .state('demo', {
@@ -68,6 +69,28 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
             isVisible: false
         });
 
+    var setLanguage = function (languageKey, languageName) {
+        eehNavigationProvider.navbarMenuItem('language').text = languageName;
+        $translateProvider.use(languageKey);
+    };
+    eehNavigationProvider
+        .navbarMenuItem('language', {
+            text: 'English',
+            iconClass: 'fa-language'
+        })
+        .navbarMenuItem('language.en', {
+            text: 'English',
+            click: function () {
+                setLanguage('en', this.text);
+            }
+        })
+        .navbarMenuItem('language.de', {
+            text: 'Deutsch',
+            click: function () {
+                setLanguage('de', this.text);
+            }
+        });
+
     eehNavigationProvider
         .sidebarMenuItem('home', {
             text: 'Home',
@@ -117,7 +140,7 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
             state: 'demo.authenticated.blank'
         })
         .sidebarMenuItem('multilevel.firstlevel3', {
-            text: 'First Level 3',
+            text: 'First level - 3',
             iconClass: 'fa-folder-o',
             isCollapsed: false
         })
@@ -131,4 +154,37 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
             iconClass: 'fa-file-o',
             state: 'demo.authenticated.blank'
         });
+
+    $translateProvider
+        .translations('en', {
+            'Blank': 'Blank',
+            'Home': 'Home',
+            'Click': 'Click',
+            'Link to example.com': 'Link to example.com',
+            'Visible': 'Visible',
+            'Multi level': 'Multi level',
+            'First level - 1': 'First level - 1',
+            'First level - 2': 'First level - 2',
+            'First level - 3': 'First level - 3',
+            'Second level - 1': 'Second level - 1',
+            'Second level - 2': 'Second level - 2',
+            'User Profile': 'User Profile',
+            'Logout': 'Logout'
+        })
+        .translations('de', {
+            'Blank': 'Leer',
+            'Home': 'Zuhause',
+            'Click': 'Klicken',
+            'Link to example.com': 'Link zu example.com',
+            'Visible': 'Sichtbar',
+            'Multi level': 'Mehrere Ebenen',
+            'First level - 1': 'Erste Ebene - 1',
+            'First level - 2': 'Erste Ebene - 2',
+            'First level - 3': 'Erste Ebene - 3',
+            'Second level - 1': 'Zweite Ebene - 1',
+            'Second level - 2': 'Zweite Ebene - 2',
+            'User Profile': 'Benutzerprofil',
+            'Logout': 'Abmelden'
+        });
+    $translateProvider.preferredLanguage('en');
 }]);

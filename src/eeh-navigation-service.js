@@ -21,6 +21,10 @@ var NavigationService = function () {
     };
 };
 
+NavigationService.prototype.$get = function () {
+    return this;
+};
+
 /**
  * Recursively map a flat array of menu items to a nested object suitable to generate HTML lists from.
  */
@@ -71,10 +75,6 @@ NavigationService.prototype.navbarMenuItems = function () {
         self.buildAncestorChain(name, items, config);
     });
     return this._toArray(items);
-};
-
-NavigationService.prototype.$get = function () {
-    return this;
 };
 
 angular.module('eehNavigation').provider('eehNavigation', NavigationService);

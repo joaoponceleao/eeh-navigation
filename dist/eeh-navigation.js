@@ -1,7 +1,29 @@
 (function(exports, global) {
     global["eeh-navigation"] = exports;
     "use strict";
-    angular.module("eehNavigation", []);
+    angular.module("eehTranslate", []);
+    var TranslateService = function($injector) {
+        if ($injector.has("$translate")) {
+            this._translate = $injector.get("$translate");
+        }
+    };
+    TranslateService.prototype.isAvailable = function() {
+        return angular.isDefined(this._translate);
+    };
+    TranslateService.prototype.instant = function(translationId, interpolateParams, interpolationId) {
+        return this.isAvailable() ? this._translate.instant(translationId, interpolateParams, interpolationId) : translationId;
+    };
+    angular.module("eehTranslate").service("eehTranslate", [ "$injector", TranslateService ]);
+    var TranslateFilter = function(eehTranslate) {
+        var self = this;
+        self.eehTranslate = eehTranslate;
+        return function(text) {
+            return self.eehTranslate.instant(text);
+        };
+    };
+    angular.module("eehTranslate").filter("eehTranslate", [ "eehTranslate", TranslateFilter ]);
+    "use strict";
+    angular.module("eehNavigation", [ "eehTranslate" ]);
     "use strict";
     var NavigationDirective = function($window, eehNavigation) {
         return {
@@ -118,6 +140,9 @@
             return arr;
         };
     };
+    NavigationService.prototype.$get = function() {
+        return this;
+    };
     NavigationService.prototype.buildAncestorChain = function(name, items, config) {
         var keys = name.split(".");
         if (name.length === 0 || keys.length === 0) {
@@ -161,9 +186,6 @@
             self.buildAncestorChain(name, items, config);
         });
         return this._toArray(items);
-    };
-    NavigationService.prototype.$get = function() {
-        return this;
     };
     angular.module("eehNavigation").provider("eehNavigation", NavigationService);
 })({}, function() {
