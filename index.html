@@ -41,11 +41,12 @@
             <li><a href="#configuration-options">Configuration Options</a></li>
             <li>
                 <ul class="list-unstyled nav">
-                    <li><a href="#menu-item-actions">Menu Item Actions</a></li>
                     <li><a href="#icons">Icons</a></li>
-                    <li><a href="#menu-item-visibility">Menu Item Visibility</a></li>
+                    <li><a href="#menu-item-actions">Menu Item Actions</a></li>
                     <li><a href="#menu-item-ordering">Menu Item Ordering</a></li>
+                    <li><a href="#menu-item-visibility">Menu Item Visibility</a></li>
                     <li><a href="#nested-sidebar-menu-items">Nested Sidebar Menu Items</a></li>
+                    <li><a href="#sidebar-text-collapse-menu-item">Sidebar Text Collapse Menu Item</a></li>
                 </ul>
             </li>
 
@@ -64,8 +65,9 @@
             <li><a href="#sidebar-search-menu-item">Sidebar Search Menu Item</a></li>
             <li>
                 <ul class="list-unstyled nav">
-                    <li><a href="#sidebar-search-model">Model</a></li>
-                    <li><a href="#sidebar-search-click">Click</a></li>
+                    <li><a href="#sidebar-search-is-visible">searchIsVisibile</a></li>
+                    <li><a href="#sidebar-search-model">searchModel</a></li>
+                    <li><a href="#sidebar-search-submit">searchSubmit</a></li>
                 </ul>
             </li>
         </ul>
@@ -139,6 +141,20 @@ function (eehNavigationProvider) {
     </code></pre>
 
     <h2 id="configuration-options">Configuration Options</h2>
+
+    <h3 id="icons">Icons</h3>
+    <p>Icons are optional.</p>
+    <h4>iconClass</h4>
+    <p>A CSS class that corresponds to an icon in a library like FontAwesome.</p>
+    <pre><code class="javascript">
+eehNavigationProvider
+    .sidebarMenuItem('mySidebarItem', {
+        text: 'My Sidebar Item',
+        href: '/my-sidebar-item'
+        iconClass: 'fa-wrench'
+    });
+    </code></pre>
+
     <h3 id="menu-item-actions">Menu Item Actions</h3>
     <p>There are three mutually exclusive, configurable menu item actions:
         <strong>href</strong>, <strong>click</strong>, and <strong>state</strong>. These actions are available for both navbar and sidebar menu items.</p>
@@ -176,16 +192,21 @@ eehNavigationProvider
     });
     </code></pre>
 
-    <h3 id="icons">Icons</h3>
-    <p>Icons are optional.</p>
-    <h4>iconClass</h4>
-    <p>A CSS class that corresponds to an icon in a library like FontAwesome.</p>
+    <h3 id="menu-item-ordering">Menu Item Ordering</h3>
+    <p>Menu items are ordered based on their <strong>weight</strong>.</p>
+    <h4>weight</h4>
+    <p>An integer value. Items that are heavier (i.e. greater weight value) sink to the bottom.</p>
     <pre><code class="javascript">
 eehNavigationProvider
-    .sidebarMenuItem('mySidebarItem', {
-        text: 'My Sidebar Item',
-        href: '/my-sidebar-item'
-        iconClass: 'fa-wrench'
+    .sidebarMenuItem('bottomSidebarItem', {
+        text: 'Bottom Sidebar Item',
+        href: '/bottom-sidebar-item'
+        weight: 1
+    })
+    .sidebarMenuItem('topSidebarItem', {
+        text: 'Top Sidebar Item',
+        href: '/top-sidebar-item'
+        weight: -1
     });
     </code></pre>
 
@@ -217,23 +238,32 @@ eehNavigation
     });
     </code></pre>
 
-    <h3 id="menu-item-ordering">Menu Item Ordering</h3>
-    <p>Menu items are ordered based on their <strong>weight</strong>.</p>
-    <h4>weight</h4>
-    <p>An integer value. Items that are heavier (i.e. greater weight value) sink to the bottom.</p>
+    <h3 id="sidebar-text-collapse-menu-item">Sidebar Text Collapse Menu Item</h3>
+    <p>The text collapse menu item toggles the visiblity of the text in the sidebar items.</p>
+    <h4>sidebarTextCollapseIsCollapsed</h4>
+    <p>A function that takes a boolean value which sets the collapsed state of the sidebar menu items' text.</p>
     <pre><code class="javascript">
-eehNavigationProvider
-    .sidebarMenuItem('bottomSidebarItem', {
-        text: 'Bottom Sidebar Item',
-        href: '/bottom-sidebar-item'
-        weight: 1
-    })
-    .sidebarMenuItem('topSidebarItem', {
-        text: 'Top Sidebar Item',
-        href: '/top-sidebar-item'
-        weight: -1
-    });
+// Collapse/hide text
+eehNavigationProvider.sidebarTextCollapseIsCollapsed(true);
+// Expand/show text
+eehNavigationProvider.sidebarTextCollapseIsCollapsed(false);
     </code></pre>
+
+    <h4>sidebarTextCollapseIsVisible</h4>
+    <p>A function that takes a boolean value which sets the visibility of the text collapse menu item (not the collapse state).</p>
+    <pre><code class="javascript">
+// Hide text collapse button
+eehNavigationProvider.sidebarTextCollapseIsVisible(false);
+// Show text collapse button
+eehNavigationProvider.sidebarTextCollapseIsVisible(true);
+    </code></pre>
+
+    <h4>sidebarTextCollapseToggleCollapsed</h4>
+    <p>A parameterless function which toggles the collapse state of the sidebar collapse menu item.</p>
+    <pre><code class="javascript">
+eehNavigationProvider.sidebarTextCollapseToggleCollapsed();
+    </code></pre>
+
     <h3 id="nested-sidebar-menu-items">Nested Sidebar Menu Items</h3>
     <p>Sidebar menu items can be nested by using a <strong>.</strong> in the first parameter of sidebarMenuItem.
     If a menu item has children, do not assign a menu item action to it.</p>
@@ -378,15 +408,22 @@ function ($translateProvider, eehNavigationProvider) {
 
     <h2 id="sidebar-search-menu-item">Sidebar Search Menu Item</h2>
     <p>The sidebar search menu item is a special type of menu item. It is not sortable with a <strong>weight</strong> property,
-        or nestable by specifying children. It is also hidden when the sidebar text is collapsed to only show icons.
-        It can be shown or hidden like other menu items with the <a href="#menu-item-visibility">isVisible</a> property.</p>
-    <h3 id="sidebar-search-model">model</h3>
+        or nestable by specifying children. It is also hidden when the sidebar text is collapsed to only show icons.</p>
+    <h3 id="sidebar-search-is-visible">searchIsVisible</h3>
+    <p>A boolean value. Assigned to <strong>ng-show</strong> on the search text input.</p>
+    <pre><code class="javascript">
+// Hide search input
+eehNavigationProvider.searchIsVisible(false);
+// Show search input
+eehNavigationProvider.searchIsVisible(true);
+    </code></pre>
+    <h3 id="sidebar-search-model">searchModel</h3>
     <p>A text value. Assigned to <strong>ng-model</strong> on the search text input.</p>
     <pre><code class="javascript">
 var searchText = 'some search text';
 eehNavigationProvider.searchModel = searchText;
     </code></pre>
-    <h3 id="sidebar-search-submit">submit</h3>
+    <h3 id="sidebar-search-submit">searchSubmit</h3>
     <p>A function. Called, via <strong>ng-submit</strong>,
         when the search button is clicked or enter is pressed while the search input is in focus.</p>
     <pre><code class="javascript">
