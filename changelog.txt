@@ -1,4 +1,7 @@
-fa2a9ed (HEAD, origin/master, origin/HEAD, master) Add support for image and links in navbar brand
+0fb3a10 (origin/master, origin/HEAD, master) Add css map
+a596d06 (tag: 2.5.0) Prepare for release
+fa2a9ed Add support for image and links in navbar brand
+8a9e576 (origin/gh-pages) Update after 2.4.0 release
 2d9037d (tag: 2.4.0) Prepare for release
 8564b2c Add programmatic API for sidebar collapse menu item.
 82c0ea6 Correct search input documentation
@@ -7,6 +10,7 @@ e465445 (tag: 2.3.0) Bump version
 50f6e39 Implement and document search feature
 eb896ac Move ng-click to search button from search input
 13335f0 Order navbar menu items according to their weight
+8461e89 Add angular-tranlate source for demo
 87f87dd Refactor docs
 1815427 (tag: 2.2.0) Prepare for release
 eb04d16 Refactor demo and update doc
@@ -58,7 +62,9 @@ e8789af Prepare for release
 527e240 Add href support
 a650bc1 Refactor style and add anchor cursor style
 bfc2a3e Update doc style
+1f84fb6 Add deps
 5ef8e7b Update README.md
+39e1284 Update readme
 f8141de Move demo into main repo
 f73f581 Add dev task and update description
 f461f61 Vertically center sidebar collapse icon
