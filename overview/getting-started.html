@@ -37,12 +37,12 @@
                             </p>
 
                             <ul class="nav nav-pills nav-stacked">
-                                                                    <li class="active">
+                                                                    <li class="">
                                         <a href="/index.html">
                                             About
                                         </a>
                                     </li>
-                                                                    <li class="">
+                                                                    <li class="active">
                                         <a href="/overview/getting-started.html">
                                             Getting Started
                                         </a>
@@ -100,24 +100,44 @@
 
                 
                 <section class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                    <h1>About</h1>
-<p>The <em>eeh-navigation</em> AngularJS module provides a configurable, responsive navbar and sidebar directive and companion 
-configuration service.
-The directive supports navigation of <strong>UI-Router</strong> states, <strong>ng-click</strong> binding, and <strong>ng-href</strong> links.</p>
-<h2>Dependencies</h2>
-<p>The directive will not work at all without the following dependencies.</p>
-<ul>
-<li>jQuery</li>
-<li>AngularJS</li>
-<li>Angular Bootstrap</li>
-<li>Twitter Bootstrap (CSS only)</li>
-</ul>
-<p>The following dependencies are optional. The directive will work without them, but some functionality will not be available.</p>
-<ul>
-<li>FontAwesome</li>
-<li>Angular Translate</li>
-<li>Angular UI Router</li>
-</ul>
+                    <h1>Getting Started</h1>
+<p>Install, include, configure.</p>
+<h2>Install (via bower)</h2>
+<pre><code>bower install eeh-navigation</code></pre>
+<h2>Include CSS</h2>
+<pre><code>&lt;link rel="stylesheet" href="bower_components/eeh-navigation/dist/eeh-navigation.css"/&gt;</code></pre>
+<h2>Include JavaScript</h2>
+<pre><code>    &lt;script src="bower_components/eeh-navigation/dist/eeh-navigation.js"&gt;&lt;/script&gt;
+    &lt;script src="bower_components/eeh-navigation/dist/eeh-navigation.tpl.js"&gt;&lt;/script&gt;</code></pre>
+<h2>Configuration Example</h2>
+<pre><code>angular.module('myApp', ['eehNavigation']).config(['eehNavigationProvider',
+function (eehNavigationProvider) {
+    // Configure navbar branding and the link to navigate to when clicked.
+    eehNavigationProvider.navbarBrand = {
+        text: 'My Product',
+        href: '/home'
+    };
+
+    // Add a drowndown menu for user links to the navbar.
+    eehNavigationProvider
+        .navbarMenuItem('user', {
+            text: 'Me',
+            iconClass: 'fa-user'
+        })
+        .navbarMenuItem('user.profile', {
+            text: 'User Profile',
+            iconClass: 'fa-user',
+            href: '/user-profile'
+        });
+
+    // Add a menu item for /home to the sidebar.
+    eehNavigationProvider
+        .sidebarMenuItem('home', {
+            text: 'Home',
+            iconClass: 'fa-home',
+            href: '/home'
+        });
+}]);</code></pre>
                     <hr>
                     <div class="footer text-center">
                         <div>Created by <a href="http://ethanhann.com">Ethan Hann</a></div>

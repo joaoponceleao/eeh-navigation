@@ -37,7 +37,7 @@
                             </p>
 
                             <ul class="nav nav-pills nav-stacked">
-                                                                    <li class="active">
+                                                                    <li class="">
                                         <a href="/index.html">
                                             About
                                         </a>
@@ -63,7 +63,7 @@
                                             Menu Item Basics
                                         </a>
                                     </li>
-                                                                    <li class="">
+                                                                    <li class="active">
                                         <a href="/configuration/accessing-menu-items.html">
                                             Accessing Menu Items
                                         </a>
@@ -100,24 +100,27 @@
 
                 
                 <section class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                    <h1>About</h1>
-<p>The <em>eeh-navigation</em> AngularJS module provides a configurable, responsive navbar and sidebar directive and companion 
-configuration service.
-The directive supports navigation of <strong>UI-Router</strong> states, <strong>ng-click</strong> binding, and <strong>ng-href</strong> links.</p>
-<h2>Dependencies</h2>
-<p>The directive will not work at all without the following dependencies.</p>
-<ul>
-<li>jQuery</li>
-<li>AngularJS</li>
-<li>Angular Bootstrap</li>
-<li>Twitter Bootstrap (CSS only)</li>
-</ul>
-<p>The following dependencies are optional. The directive will work without them, but some functionality will not be available.</p>
-<ul>
-<li>FontAwesome</li>
-<li>Angular Translate</li>
-<li>Angular UI Router</li>
-</ul>
+                    <h1>Accessing Menu Items</h1>
+<p>Menu items can be accessed where <strong>eehNavigation</strong> is available - namely in controllers, services, and directives.
+Menu items are accessed by referencing the menu item name after injecting the <strong>eehNavigation</strong> service.</p>
+<pre><code>angular.module('myApp')
+.controller('MyCtrl', ['eehNavigation', function (eehNavigation) {
+    // "myMenuItem" was defined somewhere else.
+    eehNavigation.sidebarMenuItem('myMenuItem').text = 'New Menu Item Text;
+}]);</code></pre>
+<p>It is possible to create a menu item with the <strong>eehNavigation</strong> service, but it is not recommended.</p>
+<pre><code>    Instead, create the menu item in **.config** and only do minimal wiring/contextual configuration elsewhere
+    with the **eehNavigation** service.</code></pre>
+<pre><code>// In .config, setup a logout menu item.
+eehNavigationProvider
+    .sidebarMenuItem('logout', {
+        text: 'Logout'
+    });
+// ...
+// In a controller or service, set the click property of the menu item.
+eehNavigation.sidebarMenuItem('logout').click = function () {
+    // Call custom logout code (e.g. destroy a cookie, delete user object, send logout request to server).
+};</code></pre>
                     <hr>
                     <div class="footer text-center">
                         <div>Created by <a href="http://ethanhann.com">Ethan Hann</a></div>
