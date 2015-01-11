@@ -1,106 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>eeh-navigation</title>
+    <title>eeh-navigation</title>
 
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/css/highlight.tomorrow-night.css">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/eeh-navigation.css">
-    </head>
-    <body>
+    <link rel="stylesheet" href="http://ethanhann.github.io/eeh-navigation/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://ethanhann.github.io/eeh-navigation/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://ethanhann.github.io/eeh-navigation/css/highlight.tomorrow-night.css">
+    <link rel="stylesheet" href="http://ethanhann.github.io/eeh-navigation/css/main.css">
+    <link rel="stylesheet" href="http://ethanhann.github.io/eeh-navigation/css/eeh-navigation.css">
+</head>
+<body>
 
-        <header class="navbar navbar-default navbar-fixed-top">
+<header class="navbar navbar-default navbar-fixed-top">
 
-            <a class="navbar-brand" href="/">
-                eeh-navigation
-                <small class="hidden-xs hidden-sm">
-                    An AngularJS, Bootstrap navigation directive.
-                </small>
-            </a>
+    <a class="navbar-brand" href="http://ethanhann.github.io/eeh-navigation/">
+        eeh-navigation
+        <small class="hidden-xs hidden-sm">
+            An AngularJS, Bootstrap navigation directive.
+        </small>
+    </a>
 
-            
-        </header>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/ethanhann/eeh-navigation">Code</a></li>
+        <li><a href="http://ethanhann.com">Author</a></li>
+    </ul>
+</header>
 
-        <main class="container-fluid">
-            <div class="row">
+<main class="container-fluid">
+    <div class="row">
 
+        
+            <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                                    <p class="text-muted">
+                        Overview
+                    </p>
+
+                    <ul class="nav nav-pills nav-stacked">
+                                                    <li class="active">
+                                <a href="http://ethanhann.github.io/eeh-navigation/index.html">
+                                    About
+                                </a>
+                            </li>
+                                                    <li class="">
+                                <a href="http://ethanhann.github.io/eeh-navigation/overview/getting-started.html">
+                                    Getting Started
+                                </a>
+                            </li>
+                                            </ul>
+                                    <p class="text-muted">
+                        Configuration
+                    </p>
+
+                    <ul class="nav nav-pills nav-stacked">
+                                                    <li class="">
+                                <a href="http://ethanhann.github.io/eeh-navigation/configuration/icons.html">
+                                    Icons
+                                </a>
+                            </li>
+                                                    <li class="">
+                                <a href="http://ethanhann.github.io/eeh-navigation/configuration/menu-item-basics.html">
+                                    Menu Item Basics
+                                </a>
+                            </li>
+                                                    <li class="">
+                                <a href="http://ethanhann.github.io/eeh-navigation/configuration/accessing-menu-items.html">
+                                    Accessing Menu Items
+                                </a>
+                            </li>
+                                                    <li class="">
+                                <a href="http://ethanhann.github.io/eeh-navigation/configuration/nested-sidebar-menu-items.html">
+                                    Nested Sidebar Menu Items
+                                </a>
+                            </li>
+                                                    <li class="">
+                                <a href="http://ethanhann.github.io/eeh-navigation/configuration/sidebar-text-collapse-menu-item.html">
+                                    Sidebar Text Collapse Menu Item
+                                </a>
+                            </li>
+                                                    <li class="">
+                                <a href="http://ethanhann.github.io/eeh-navigation/configuration/sidebar-search-menu-item.html">
+                                    Sidebar Search Menu Item
+                                </a>
+                            </li>
+                                            </ul>
+                                    <p class="text-muted">
+                        Optional Features
+                    </p>
+
+                    <ul class="nav nav-pills nav-stacked">
+                                                    <li class="">
+                                <a href="http://ethanhann.github.io/eeh-navigation/features/language-translation.html">
+                                    Language Translation
+                                </a>
+                            </li>
+                                            </ul>
                 
-                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+            </nav>
 
-                                                    <p class="text-muted">
-                                Overview
-                            </p>
-
-                            <ul class="nav nav-pills nav-stacked">
-                                                                    <li class="active">
-                                        <a href="/index.html">
-                                            About
-                                        </a>
-                                    </li>
-                                                                    <li class="">
-                                        <a href="/overview/getting-started.html">
-                                            Getting Started
-                                        </a>
-                                    </li>
-                                                            </ul>
-                                                    <p class="text-muted">
-                                Configuration
-                            </p>
-
-                            <ul class="nav nav-pills nav-stacked">
-                                                                    <li class="">
-                                        <a href="/configuration/icons.html">
-                                            Icons
-                                        </a>
-                                    </li>
-                                                                    <li class="">
-                                        <a href="/configuration/menu-item-basics.html">
-                                            Menu Item Basics
-                                        </a>
-                                    </li>
-                                                                    <li class="">
-                                        <a href="/configuration/accessing-menu-items.html">
-                                            Accessing Menu Items
-                                        </a>
-                                    </li>
-                                                                    <li class="">
-                                        <a href="/configuration/nested-sidebar-menu-items.html">
-                                            Nested Sidebar Menu Items
-                                        </a>
-                                    </li>
-                                                                    <li class="">
-                                        <a href="/configuration/sidebar-text-collapse-menu-item.html">
-                                            Sidebar Text Collapse Menu Item
-                                        </a>
-                                    </li>
-                                                                    <li class="">
-                                        <a href="/configuration/sidebar-search-menu-item.html">
-                                            Sidebar Search Menu Item
-                                        </a>
-                                    </li>
-                                                            </ul>
-                                                    <p class="text-muted">
-                                Optional Features
-                            </p>
-
-                            <ul class="nav nav-pills nav-stacked">
-                                                                    <li class="">
-                                        <a href="/features/language-translation.html">
-                                            Language Translation
-                                        </a>
-                                    </li>
-                                                            </ul>
-                        
-                    </nav>
-
-                
-                <section class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                    <h1>About</h1>
+        
+        <section class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+            <h1>About</h1>
 <p>The <em>eeh-navigation</em> AngularJS module provides a configurable, responsive navbar and sidebar directive and companion 
 configuration service.
 The directive supports navigation of <strong>UI-Router</strong> states, <strong>ng-click</strong> binding, and <strong>ng-href</strong> links.</p>
@@ -118,28 +121,29 @@ The directive supports navigation of <strong>UI-Router</strong> states, <strong>
 <li>Angular Translate</li>
 <li>Angular UI Router</li>
 </ul>
-                    <hr>
-                    <div class="footer text-center">
-                        <div>Created by <a href="http://ethanhann.com">Ethan Hann</a></div>
-                        <span class="fa fa-star"></span>
-                        <div>Inspired by <a href="http://startbootstrap.com/template-overviews/sb-admin-2">SB Admin 2</a></div>
-                    </div>
-                </section>
+            <hr>
+            <div class="footer text-center">
+                <div>Created by <a href="http://ethanhann.com">Ethan Hann</a></div>
+                <span class="fa fa-star"></span>
 
+                <div>Inspired by <a href="http://startbootstrap.com/template-overviews/sb-admin-2">SB Admin 2</a></div>
             </div>
-        </main>
+        </section>
 
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    </div>
+</main>
 
-        <script>
-            $(function() {
-                $("section>h1").wrap('<div class="page-header" />');
-                // Syntax highlighting
-                hljs.initHighlightingOnLoad();
-            });
-        </script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
 
-    </body>
+<script>
+    $(function () {
+        $("section>h1").wrap('<div class="page-header" />');
+        // Syntax highlighting
+        hljs.initHighlightingOnLoad();
+    });
+</script>
+
+</body>
 </html>
