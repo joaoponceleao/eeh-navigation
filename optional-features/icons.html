@@ -58,11 +58,6 @@
 
                     <ul class="nav nav-pills nav-stacked">
                                                     <li class="">
-                                <a href="http://ethanhann.github.io/eeh-navigation/configuration/icons.html">
-                                    Icons
-                                </a>
-                            </li>
-                                                    <li class="">
                                 <a href="http://ethanhann.github.io/eeh-navigation/configuration/menu-item-basics.html">
                                     Menu Item Basics
                                 </a>
@@ -94,7 +89,12 @@
 
                     <ul class="nav nav-pills nav-stacked">
                                                     <li class="active">
-                                <a href="http://ethanhann.github.io/eeh-navigation/features/language-translation.html">
+                                <a href="http://ethanhann.github.io/eeh-navigation/optional-features/icons.html">
+                                    Icons
+                                </a>
+                            </li>
+                                                    <li class="">
+                                <a href="http://ethanhann.github.io/eeh-navigation/optional-features/language-translation.html">
                                     Language Translation
                                 </a>
                             </li>
@@ -104,70 +104,16 @@
 
         
         <section class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-            <h1>Language Translation</h1>
-<p>Language translation is an optional feature. To use it, do the following.</p>
-<h2>Install angular-translate (via bower)</h2>
-<pre><code>bower install angular-translate</code></pre>
-<h2>Include angular-translate JavaScript</h2>
-<pre><code>&lt;script src="bower_components/angular-translate/angular-translate.js"&gt;&lt;/script&gt;</code></pre>
-<h2>Enable angular-translate Module</h2>
-<pre><code>angular.module('myApp', ['pascalprecht.translate']);</code></pre>
-<h2>Add Menu Items to Translate</h2>
-<pre><code>angular.module('myApp').config(['eehNavigationProvider',
-function (eehNavigationProvider) {
-    eehNavigationProvider
-        .sidebarMenuItem('home', {
-            text: 'Home',   // Will be translated.
-            href: '/home',
-        })
-        .sidebarMenuItem('logout', {
-            text: 'Logout', // Will be translated.
-            href: '/logout',
-        });
-}]);</code></pre>
-<h2>Add Translations</h2>
-<pre><code>angular.module('myApp').config(['$translateProvider', 'eehNavigationProvider',
-function ($translateProvider, eehNavigationProvider) {
-    // ...
-
-    // English translation
-    $translateProvider
-        .translations('en', {
-            'Home': 'Home',
-            'Logout': 'Logout'
-        });
-
-    // German translation
-    $translateProvider
-        .translations('de', {
-            'Home': 'Zuhause',
-            'Logout': 'Abmelden'
-        });
-}]);</code></pre>
-<h2>Add Dropdown to Toggle Between Languages</h2>
-<pre><code>angular.module('myApp').config(['$translateProvider', 'eehNavigationProvider',
-function ($translateProvider, eehNavigationProvider) {
-    // ...
-
-    // Switch languages via dropdown
-    eehNavigationProvider
-        .navbarMenuItem('language', {
-            text: 'Language',
-            iconClass: 'fa-language'
-        })
-        .navbarMenuItem('language.en', {
-            text: 'English',
-            click: function () {
-                $translateProvider.use('en');
-            }
-        })
-        .navbarMenuItem('language.de', {
-            text: 'Deutsch',
-            click: function () {
-                $translateProvider.use('de');
-            }
-        });
-}]);</code></pre>
+            <h1>Icons</h1>
+<p>Icons are optional.</p>
+<h2>iconClass</h2>
+<p>A CSS class that corresponds to an icon in a library like <a href="http://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a>.</p>
+<pre><code>eehNavigationProvider
+    .sidebarMenuItem('mySidebarItem', {
+        text: 'My Sidebar Item',
+        href: '/my-sidebar-item'
+        iconClass: 'fa-wrench'
+    });</code></pre>
             <hr>
             <div class="footer text-center">
                 <div>Created by <a href="http://ethanhann.com">Ethan Hann</a></div>
