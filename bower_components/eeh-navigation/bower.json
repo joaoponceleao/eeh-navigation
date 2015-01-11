@@ -1,0 +1,42 @@
+{
+  "name": "eeh-navigation",
+  "version": "3.0.0",
+  "main": [
+    "dist/eeh-navigation.css",
+    "dist/eeh-navigation.js",
+    "dist/eeh-navigation.tpl.js"
+  ],
+  "homepage": "https://github.com/ethanhann/eeh-navigation",
+  "authors": [
+    "Ethan Hann <ethanhann@gmail.com>"
+  ],
+  "description": "A data-driven AngularJS, Bootstrap navigation directive.",
+  "keywords": [
+    "AngularJS",
+    "Bootstrap",
+    "navigation",
+    "menu",
+    "sidebar",
+    "directive"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": ">=1.2",
+    "angular-ui-router": "~0.2.10",
+    "angular-bootstrap": "~0.11.0",
+    "angular-translate": "~2.2.0",
+    "font-awesome": ">=4.0",
+    "bootstrap": ">=3.0",
+    "jquery": ">=1.9"
+  },
+  "devDependencies": {
+    "angular-highlightjs": "~0.3.0"
+  }
+}
