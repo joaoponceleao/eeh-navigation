@@ -113,6 +113,16 @@
 <h2>Include JavaScript</h2>
 <pre><code>    &lt;script src="bower_components/eeh-navigation/dist/eeh-navigation.js"&gt;&lt;/script&gt;
     &lt;script src="bower_components/eeh-navigation/dist/eeh-navigation.tpl.js"&gt;&lt;/script&gt;</code></pre>
+<h2>Use the &quot;eeh-navigation&quot; Directive</h2>
+<p>The directive should wrap some set of nested sub controllers.</p>
+<pre><code class="language-html">&lt;eeh-navigation&gt;
+    ... my sub controllers ...
+&lt;/eeh-navigation&gt;</code></pre>
+<p>If ui-router is used, which is recommended, then the directive should wrap a <em>ui-view</em> directive.
+It should also be in a template that is at the top of the state hierarchy.</p>
+<pre><code class="language-html">&lt;eeh-navigation&gt;
+    &lt;ui-view&gt;&lt;/ui-view&gt;
+&lt;/eeh-navigation&gt;</code></pre>
 <h2>Configuration Example</h2>
 <pre><code>angular.module('myApp', ['eehNavigation']).config(['eehNavigationProvider',
 function (eehNavigationProvider) {

@@ -112,9 +112,9 @@ Menu items are accessed by referencing the menu item name after injecting the <s
     // "myMenuItem" was defined somewhere else.
     eehNavigation.sidebarMenuItem('myMenuItem').text = 'New Menu Item Text;
 }]);</code></pre>
-<p>It is possible to create a menu item with the <strong>eehNavigation</strong> service, but it is not recommended.</p>
-<pre><code>    Instead, create the menu item in **.config** and only do minimal wiring/contextual configuration elsewhere
-    with the **eehNavigation** service.</code></pre>
+<p>It is possible to create a menu item with the <strong>eehNavigation</strong> service, but it is not recommended.
+Instead, create the menu item in <strong>.config</strong> and only do minimal wiring/contextual configuration elsewhere
+with the <strong>eehNavigation</strong> service.</p>
 <pre><code>// In .config, setup a logout menu item.
 eehNavigationProvider
     .sidebarMenuItem('logout', {
