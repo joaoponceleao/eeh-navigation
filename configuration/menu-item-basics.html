@@ -115,6 +115,13 @@
         text: 'My Sidebar Item',
         href: '/my-sidebar-item'
     });</code></pre>
+<p>To make the link open in a new tab, set the <em>target</em> property to '_blank' (the default value is '_self').</p>
+<pre><code>eehNavigationProvider
+    .sidebarMenuItem('mySidebarItem', {
+        text: 'My Sidebar Item',
+        href: '/my-sidebar-item',
+        target: '_blank'
+    });</code></pre>
 <h3>click</h3>
 <p>A parameterless function. This value is plugged into a ng-click attribute behind the scenes.</p>
 <pre><code>eehNavigationProvider
