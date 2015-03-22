@@ -42,7 +42,7 @@ NavigationService.prototype.searchIsVisible = function (value) {
     return this;
 };
 
-NavigationService.prototype.searchModel= function (value) {
+NavigationService.prototype.searchModel = function (value) {
     if (angular.isUndefined(value)) {
         return this._sidebarSearch.model;
     }
@@ -135,6 +135,12 @@ NavigationService.prototype.sidebarTextCollapseIsCollapsed = function (value) {
 NavigationService.prototype.sidebarTextCollapseToggleCollapsed = function () {
     this._sidebarTextCollapse.isCollapsed = !this._sidebarTextCollapse.isCollapsed;
     return this;
+};
+
+NavigationService.prototype.isSidebarVisible = function () {
+    return this.searchIsVisible() || this.sidebarMenuItems()
+            .filter(function (item) { return item._isVisible(); })
+            .length > 0;
 };
 
 angular.module('eehNavigation').provider('eehNavigation', NavigationService);
