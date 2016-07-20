@@ -1,5 +1,7 @@
 'use strict';
 
+var Dgeni = require('dgeni');
+
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
 
@@ -8,14 +10,36 @@ module.exports = function (grunt) {
             src: 'src',
             build: 'build',
             dist: 'dist',
-            libName: 'eeh-navigation'
+            libName: 'eeh-navigation',
+            docs: 'docs',
+            demo: 'docs/bower_components/eeh-navigation/dist'
+        },
+        copy: {
+            dev: {
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    src: ['<%= settings.dist %>/*'],
+                    dest: '<%= settings.demo %>'
+                }]
+            }
         },
         exec: {
             generateChangelog: {
-                cmd: function() {
+                cmd: function () {
                     return 'git log --oneline --decorate --no-merges > changelog.txt';
                 }
             }
+        },
+        dgeni: {
+            options: {
+                // Specify the base path used when resolving relative paths to source files
+                basePath: '<%= settings.src %>'
+            },
+            // Process all js files in `src` and its subfolders ...
+            src: ['<%= settings.src %>/**/*.js', '<%= settings.docs %>/content/**/*.ngdoc'],
+            // Specify where write our generated doc files directory
+            dest: 'build/docs'
         },
         jshint: {
             options: {
@@ -23,7 +47,7 @@ module.exports = function (grunt) {
                 reporter: require('jshint-stylish')
             },
             src: [
-                '<%= settings.src %>/{,*/}*.js'
+                '<%= settings.src %>/**/*.js'
             ]
         },
         karma: {
@@ -38,7 +62,8 @@ module.exports = function (grunt) {
                         '<%= settings.src %>/eeh-translate.js',
                         '<%= settings.src %>/eeh-navigation.js',
                         '<%= settings.src %>/eeh-navigation-*.js',
-                        '!<%= settings.src %>/*-spec.js'
+                        '<%= settings.src %>/*/eeh-navigation-*.js',
+                        '!<%= settings.src %>/**/*-spec.js'
                     ]
                 }
             }
@@ -46,9 +71,9 @@ module.exports = function (grunt) {
         ngtemplates: {
             eehNavigation: {
                 cwd: '<%= settings.src %>',
-                src: 'eeh-navigation.html',
+                src: ['**/*.html'],
                 dest: '<%= settings.dist %>/eeh-navigation.tpl.js',
-                options:  {
+                options: {
                     url: function (url) {
                         return 'template/eeh-navigation/' + url;
                     }
@@ -59,9 +84,10 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= settings.src %>/scss/',
+                    cwd: '<%= settings.src %>/',
                     src: ['**/*.scss'],
                     dest: '<%= settings.dist %>',
+                    flatten: true,
                     ext: '.css'
                 }]
             }
@@ -69,7 +95,7 @@ module.exports = function (grunt) {
         watch: {
             src: {
                 files: ['src/**/*.*'],
-                tasks: ['build'],
+                tasks: ['build', 'copy:dev', 'dgeni'],
                 options: {
                     spawn: false
                 }
@@ -104,9 +130,15 @@ module.exports = function (grunt) {
         },
         versioncheck: {
             options: {
-                hideUpToDate : true
+                hideUpToDate: true
             }
         }
+    });
+
+    grunt.registerTask('dgeni', 'Generate docs via dgeni.', function () {
+        var done = this.async();
+        var dgeni = new Dgeni([require('./docs/dgeni.conf')]);
+        dgeni.generate().then(done);
     });
 
     grunt.registerTask('dev', [

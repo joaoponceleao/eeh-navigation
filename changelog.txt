@@ -1,5 +1,209 @@
-f712681 (HEAD, origin/master, origin/HEAD, master) Use ngAnnotate
-22786d6 Prepare for release
+b62c3bc (HEAD, origin/master, origin/HEAD, master) Push dist build
+ca5cadf Revert text collapse fix
+578c71a Update to angular-bootstrap 0.14.x
+2a69776 (tag: 4.3.1) Prepare for 4.3.1 release
+1552388 removed useless code
+54af996 Changed the way text are hidden in sidebar
+b73886b Update docs
+c97776b Add UI Router example
+952ac57 Update docs dist
+3d9b8d1 Fix concat issue by minifying google-code-prettify ourselves
+b4d3c22 Update README.md
+06831d2 Update .travis.yml
+c61de5c Add filesystem explorer example
+e49f167 Fix a few issues with new examples
+a34a0d4 Update change log
+cf23157 Update README.md
+1238d74 Add some temp fixes for doc dist
+8df35ed Build docs
+2912829 (tag: 4.3.0) Prepare for release
+2e7abd4 Polish docs
+7257cda Build to docs site for dev
+b916daf Resolves #32
+30f73c7 Polish up examples
+985657a Add slideout example
+38bca73 Flesh out examples
+2b55bb3 Start adding codepen examples to docs
+3544aeb Resolves #30
+09007db Add container-class option to navbar
+3df6aad Prepare for docs release
+d16bd59 Prepare for docs release
+c47247d Upgrade docs to 4.2.0, and fix a few minor issues with the site
+afe0cc4 Update docs
+cf2a6df (tag: 4.2.0) Prepare for release
+ad09833 Update docs
+584b404 Allow a navbar brand image to be displayed if there is no text
+d3b14bf Remove unnecessary semicolons
+e3c35b2 Use @ngInject, update ngAnnotate
+e0ad62a Ignore docs
+6c44daf Added defualtIconClassPrefix property
+8e417ff Added defualtIconClassPrefix property
+1db2cfd Fix for windowElement.bind() not a function error
+4a17c99 Set default menu item icons with iconBaseClass to automatically use the font library specified
+527afd7 Set default menu item icons with iconBaseClass to automatically use the font library specified
+8fe30ac Removed jQuery dependencies in navbar and sidebar directives
+7887c67 (chore/remove_jquery_dependency) Add note on moving demo site code
+34501db Bump version in docs and remove link to old docs
+f404f7a Update docs/dist
+2f92e60 Update docs post release
+bac9e89 (tag: 4.1.2) Prepare for release
+0530ed4 Use correct variables in navbar brand directive
+c80531a Update docs/dist
+45bfce4 Use ISO characters in project details
+595b509 Update docs/dist
+435e4c7 Add space before detail separator in docs
+1c41cb1 Rework project details in docs
+80d9f53 Update docs/dist
+2be53b5 Make logo container width smaller for mobile
+00d6a8e Update docs/dist
+3f4d717 Update version in docs
+d1960d9 Update docs/dist
+c79dc8e Update docs for v4.1.1
+041a135 (tag: 4.1.1) Prepare for release
+4aaff1f Fix navClass in sidebar and menu
+5be15be Fix navClass in eeh-navigation-menu
+c73142b Update docs/dist for 4.1.0
+9845f09 Update docs for v4.1.0
+795b386 (tag: 4.1.0) Prepare for release
+88bce2c Add navClass and deep watch to eeh-navigation-menu directive
+5ddf179 Add deep watch to navbar
+cf9e0aa Remove unneeded comments
+8bef6f4 Add logo to docs
+6528df7 Adding a deep watch to trigger a digest when a new menu item is added
+725335d Update README.md
+f1f6740 Move examples link to project details section
+abb6181 Flesh out and refactor build process for docs
+bdf832b Fix bootstrap sass path in docs build task
+dcaf42a Update docs/dist
+e0a744b Update sidebar config to use v4.0.0
+30ce1dd Update getting started doc and update package name
+c9fe91c Update docs/dist
+4d41f75 Move examples link to project details section
+0938d22 Add project details, remove alert
+9175ce3 Update /dist
+568017b Update /dist
+279f280 Add link to examples, and make header in jumbotron a link
+22e8c4b Add partials to docs/dist
+1c53d08 Move deploy docs script to root
+a3ef1ad Add built docs
+d494ce4 Allow docs to be deployed
+21d45b3 (tag: 4.0.0) Update dist
+3cce7cb Prepare for release
+452fa41 Make sidebar directive scope variables more consistently named
+672f23f Update menu doc
+d2e09c0 Update doc state
+c483fe8 Add translation documentation
+6ce0128 Update docs
+0e79bb6 Fix doc link
+dd91f57 Change "list" to "menu" in directive name
+6d405fd (origin/generic-menu-directive, generic-menu-directive) Update docs
+f00d193 Refactor "list" to "menu"
+81b75a9 Check root menu item visibility
+60c66c4 Add framework agnostic menu
+24c9390 Restyle docs footer
+03cae2e Re-enable sidebar config options in docs
+833b438 (tag: 4.0.0-beta3) Prepare for release
+2fab7cf Update module in docs
+161cb19 Check if menuName is defined in sidebar directive
+8fb2f6e Revert refactor that caused performance issue
+045fbdd (tag: 4.0.0-beta2) Prepare for release
+a78b729 Refactor
+4379b92 Remove debug statements
+2dbf8b3 Cleanup docs index.js
+14d003b Check if menuName is defined before using it
+212aeb5 Indicate that menuName is optional in directives
+51a0b9f Polish docs
+0cbb3a1 Refactor "rootMenuName" to "menuName"
+e95bd1c Properly hide search input in doc
+1ed1605 Fix doc icons
+5d0552f Add a link to the demo
+af3bc8c Style new docs
+e17c5dd Add license file
+93246f3 Fix attribute in sidebar directive
+2e1bc06 Build to demo for dev task
+99f32d9 Fix icon class variable in search input template
+27e1823 Remove old demo
+c9ca87d Upgrade lib version in docs
+3fa0796 Remove old doc and move demo to root
+ded1815 (tag: 4.0.0-beta1) Prepare for release
+eecfac3 Switch src path pattern for jshint
+fa888ac (origin/try-dgeni, try-dgeni) Update docs
+e0f97c1 Fix issues with search input icon class
+7ad04ec Fix typo in docs
+a27c9d4 Add change log to new docs.
+7b8ed7e Flesh out docs
+a12a073 Flesh out docs
+404f34d Use =? for default properties in sidebar directive
+8c39688 use dgeni for a few docs
+69c85eb Continue to flesh out docs
+f58fde4 Fix path in docs
+b8f7ce2 Update dev deps for docs
+f73e94b Start dog-fooding with docs
+8bc4e9c Bump version in docs
+3ef5774 (tag: 4.0.0-alpha4) Prepare for release
+c51641c Fix sass file name
+1db8945 Make search input available when sidebar is collapsed
+8be6ba8 Move sidebar related variables from core service into sidebar directive
+17970a4 Remove some unneeded internal variables in core nav service
+d0caabd Add ng-click directive to navbar brand directive
+9de94e5 Refactor navbar brand into a directive
+1aef233 Add some demo content
+5def8c7 Bump version in demo
+400ac30 (tag: 4.0.0-alpha3) Prepare for release
+d5dfd73 Only act on popped out sidebar when the sidebar is collapsed.
+da3cd30 Add a second nested sidebar menu item set
+ea75194 Do not allow multiple collapsed nested sidebar menu items to overlap
+193418c Make nested sidebar items available when sidebar is collapsed
+c241d33 Update deps
+5150352 Update change log and dist/
+727603d Refactor location of active menu item directive
+0dfad8c Recursively determine active status of nested menu items
+ed722f4 In sidebar parent element have active class, if any of children is active
+2f8089d Fix up tests
+57f9e86 (tag: 4.0.0-alpha2) Prepare for release
+f77833e Fix CS issue
+9d05650 Add deps to sample config
+dcded65 Update docs
+8a75160 Make search input compatible with navbar
+61c81fa Begin refactoring search input into a separate directive
+2d31dcf Replace sidebarMenuItem(s) with menuItem(s) and menuItemTree methods and refactor
+aa3f17e Replace navbarMenuItem(s) with menuItem(s) and menuItemTree methods
+2f0e99c Set default icon base class to "glyphicon".
+3dcd78d Set nav version in demo
+31ba8ca Prepare for release
+3bdedd5 Incre
+2392ec7 Make sidebar active mark an indent and only show it on larger screens
+ede8d58 Set nested child sidebar menu items to be active if they have an active state
+0c21b45 Make "system" icons configurable
+e97a999 Make font library (mostly) configurable
+d50ca12 Made sidebar-nav a derivation of navbar-nav
+0531b07 Set the default value of topOffset if it isn't defined
+0e86bb4 Refactor sidebar style and remove borders
+a1e75ee Make sidebar's topOffset property configurable
+20f93ff Re-add fix for navbar padding issue
+2795e34 Upgrade angular-bootstrap to latest version
+c599da5 Start using bootstrap-sass package for theming
+cd79013 Refactor core file location
+8d6808b Remove deprecated files
+83581a8 (tag: 3.3.0) Prepare for release
+b1283c8 (origin/decoupled-menus) Add dist before merge
+d311eb0 Update docs
+f0bd6ef Use new directives in demo
+e058f2d Refactor components
+c96b574 Fix a few CS issues
+8e5cbc4 Depend on state change event rather than watching $location
+a39afea Transform menu-item-content template into a directive
+46825e5 Fix file name
+d1d9cec Rework active menu item directive
+892ab73 Begin DRYing out directives
+dd1316c Slightly newer version of UI router is needed for adding active class to nested menu items
+32e63ec Decouple sidebar and navbar
+fb7c44f (decoupled-menus) Start decoupling menus
+0c54ae8 Copy dist into docs for dev
+e209678 Copy dist into docs for dev
+01a98e5 (tag: 3.2.1) Prepare for release
+f712681 Use ngAnnotate
+22786d6 (tag: 3.2.0) Prepare for release
 f1023e9 Fix doc url
 5a89dac Add build status badge to readme
 464aae5 Update test config
@@ -20,7 +224,7 @@ ce5cd58 Exposed target attribute for links
 4206e13 (tag: 3.0.3) Prepare for release
 060b584 Apply rule to .navbar-top-links
 0f7387f (tag: 3.0.2) Increment version number
-245a337 Prepare for release
+245a337 (tag: 3.0.1) Prepare for release
 2d16a67 Fix margin issue that caused the whole page to be too wide
 1a42b1a Add eeh-navigation directive explanation in "Getting Started"
 d2709ce Fix doc format issue
@@ -86,7 +290,7 @@ e271dcf (tag: 2.0.1) Prepare for release
 ce90627 Add a MenuItem class and factor out functions from directive
 5397bde (tag: 2.0.0) Prepare for release
 7d42fda Fix CS issue
-0282574 (origin/flat-config) Add ability to weight menu items (heavier items sink)
+0282574 (origin/flat-config, flat-config) Add ability to weight menu items (heavier items sink)
 97c4cc1 Separate js into multiple files and prefix lib files with eeh-
 e43336a Refactor navigation service
 9a4bf44 Flatten navbar item configuration
